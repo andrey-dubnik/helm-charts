@@ -13,11 +13,12 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/part-of: {{ .Chart.Name }}
   annotations:
-    {{- if .Values.cassandra.enabled }}
-    "helm.sh/hook": post-install
-    {{- else }}
+    # {{- if .Values.cassandra.enabled }}
+    # "helm.sh/hook": post-install
+    # {{- else }}
+    # Helm will never complete if cassandra is not installed so let the job run and eventually succeed
     "helm.sh/hook": pre-install
-    {{- end }}
+    # {{- end }}
     "helm.sh/hook-weight": "0"
     {{- if not .Values.debug }}
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
