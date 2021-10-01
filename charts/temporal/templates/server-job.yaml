@@ -204,11 +204,11 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/part-of: {{ .Chart.Name }}
   annotations:
-    {{- if .Values.elasticsearch.external }}
+    # {{- if .Values.elasticsearch.external }}
     "helm.sh/hook": pre-install
-    {{- else }}
-    "helm.sh/hook": post-install
-    {{- end }}
+    # {{- else }}
+    # "helm.sh/hook": post-install
+    # {{- end }}
     "helm.sh/hook-weight": "0"
     {{- if not .Values.debug }}
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
